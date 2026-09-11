@@ -122,7 +122,8 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-          IMAGE="ghcr.io/${{ github.repository_owner }}/devops-intern-final"
+          OWNER="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          IMAGE="ghcr.io/${OWNER}/devops-intern-final"
 
           docker build \
             --build-arg BUILD_SHA="${{ github.sha }}" \
@@ -132,7 +133,8 @@ jobs:
 
       - name: Push Docker image
         run: |
-          IMAGE="ghcr.io/${{ github.repository_owner }}/devops-intern-final"
+          OWNER="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          IMAGE="ghcr.io/${{OWNER}}/devops-intern-final"
 
           docker push "${IMAGE}:${{ github.sha }}"
           docker push "${IMAGE}:latest"
