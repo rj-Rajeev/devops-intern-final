@@ -134,7 +134,7 @@ jobs:
       - name: Push Docker image
         run: |
           OWNER="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
-          IMAGE="ghcr.io/${{OWNER}}/devops-intern-final"
+          IMAGE="ghcr.io/${OWNER}/devops-intern-final"
 
           docker push "${IMAGE}:${{ github.sha }}"
           docker push "${IMAGE}:latest"
